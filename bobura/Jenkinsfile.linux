@@ -1,6 +1,8 @@
-# Jenkinsfile for Bobura on Linux
-# http://www.tetengo2.org/jenkins/
-# Copyright (C) 2017 kaoru
+/*
+    Jenkinsfile for Bobura on Linux
+    http://www.tetengo2.org/jenkins/
+    Copyright (C) 2017 kaoru
+*/
 
 node('slave-eclair') {
   stage('Start Docker Container') {

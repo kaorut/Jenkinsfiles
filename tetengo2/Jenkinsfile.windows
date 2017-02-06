@@ -1,6 +1,8 @@
-# Jenkinsfile for Tetengo2 on Windows
-# http://www.tetengo2.org/jenkins/
-# Copyright (C) 2017 kaoru
+/*
+    Jenkinsfile for Tetengo2 on Windows
+    http://www.tetengo2.org/jenkins/
+    Copyright (C) 2017 kaoru
+*/
 
 node('slave-eclair') {
   stage('Clone from GitHub') {
