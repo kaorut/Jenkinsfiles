@@ -1,0 +1,24 @@
+# Jenkinsfile for Tetengo2 on Windows
+# http://www.tetengo2.org/jenkins/
+# Copyright (C) 2017 kaoru
+
+node('slave-eclair') {
+  stage('Clone from GitHub') {
+    git 'https://github.com/kaorut/tetengo2.git'
+  }
+  stage('Configure') {
+    bat '''chcp 65001
+    copy ..\\..\\jenkinsfiles\\tetengo2\\tetengo2_config.h .
+'''
+  }
+  stage('Build for Win32 with MSBuild') {
+    bat '''chcp 65001
+    "%MSBUILD_COMMAND%" /t:Rebuild /m:1 /p:Configuration=Release;Platform=Win32 tetengo2.sln
+'''
+  }
+  stage('Build for x64 with MSBuild') {
+    bat '''chcp 65001
+    "%MSBUILD_COMMAND%" /t:Rebuild /m:1 /p:Configuration=Release;Platform=x64 tetengo2.sln
+'''
+  }
+}

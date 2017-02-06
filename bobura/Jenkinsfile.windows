@@ -1,0 +1,36 @@
+# Jenkinsfile for Bobura on Windows
+# http://www.tetengo2.org/jenkins/
+# Copyright (C) 2017 kaoru
+
+node('slave-eclair') {
+  stage('Clone from GitHub') {
+    git 'https://github.com/kaorut/bobura.git'
+    bat '''chcp 65001
+    "%GIT_COMMAND%" submodule update --init
+    "%GIT_COMMAND%" submodule foreach git checkout master
+    "%GIT_COMMAND%" submodule foreach git pull
+'''
+  }
+  stage('Configure') {
+    bat '''chcp 65001
+    copy ..\\..\\jenkinsfiles\\bobura\\bobura_config.h .
+    copy ..\\..\\jenkinsfiles\\bobura\\zzz_codesign.bat lib\\tetengo2\\tools
+'''
+  }
+  stage('Build for Win32 with MSBuild') {
+    bat '''chcp 65001
+    "%MSBUILD_COMMAND%" /t:Rebuild /m:1 /p:Configuration=Release;Platform=Win32 bobura.sln
+'''
+  }
+  stage('Build for x64 with MSBuild') {
+    bat '''chcp 65001
+    "%MSBUILD_COMMAND%" /t:Rebuild /m:1 /p:Configuration=Release;Platform=x64 bobura.sln
+'''
+  }
+  stage('Save Artifacts') {
+    bat '''chcp 65001
+    call tools\\make_installer_zip.bat
+'''
+    archiveArtifacts 'bin/*.zip,bin/installer.Release/*.msi'
+  }
+}

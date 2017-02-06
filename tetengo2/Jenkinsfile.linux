@@ -1,0 +1,47 @@
+# Jenkinsfile for Tetengo2 on Linux
+# http://www.tetengo2.org/jenkins/
+# Copyright (C) 2017 kaoru
+
+node('slave-eclair') {
+  stage('Start Docker Container') {
+    bat '''chcp 65001
+    docker stop -t 0 jenkins_slave_tetengo2
+    docker rm -v jenkins_slave_tetengo2
+    docker run --name jenkins_slave_tetengo2 -itd -u docker -w /home/docker -v "%WORKSPACE%":/mnt/jenkins tetengo/base:latest
+'''
+  }
+  stage('Clone from GitHub') {
+    bat '''chcp 65001
+    docker exec jenkins_slave_tetengo2 bash -c "rm -rf /home/docker/tetengo2"
+    docker exec jenkins_slave_tetengo2 bash -c "git clone https://github.com/kaorut/tetengo2.git"
+'''
+  }
+  stage('Configure') {
+    bat '''chcp 65001
+    copy ..\\..\\jenkinsfiles\\tetengo2\\jenkins_tetengo2_*.sh .
+    docker exec jenkins_slave_tetengo2 bash -c "cp /mnt/jenkins/jenkins_tetengo2_*.sh /home/docker/tetengo2"
+    docker exec jenkins_slave_tetengo2 bash -c "cd tetengo2 && ./jenkins_tetengo2_configure.sh /home/docker/tetengo2"
+'''
+  }
+  stage('Lint') {
+    bat '''chcp 65001
+    docker exec jenkins_slave_tetengo2 bash -c "cd tetengo2 && ./jenkins_tetengo2_lint.sh"
+'''
+  }
+  stage('Build') {
+    bat '''chcp 65001
+    docker exec jenkins_slave_tetengo2 bash -c "cd tetengo2 && ./jenkins_tetengo2_distcheck.sh /home/docker/tetengo2"
+'''
+  }
+  stage('Make Documents') {
+    bat '''chcp 65001
+    docker exec jenkins_slave_tetengo2 bash -c "cd tetengo2 && ./jenkins_tetengo2_doc.sh"
+'''
+  }
+  stage('Save Artifacts') {
+    bat '''chcp 65001
+    docker exec jenkins_slave_tetengo2 bash -c "cd tetengo2/build && cp -r *.tar.bz2 *.tar.gz *.zip doc /mnt/jenkins"
+'''
+    archiveArtifacts '*.tar.gz, *.tar.bz2, *.zip, doc/**'
+  }
+}
