@@ -19,12 +19,12 @@ node('slave-eclair') {
     copy ..\\..\\jenkinsfiles\\bobura\\zzz_codesign.bat lib\\tetengo2\\tools
 '''
   }
-  stage('Build for Win32 with MSBuild') {
+  stage('Build for Win32') {
     bat '''chcp 65001
     "%MSBUILD_COMMAND%" /t:Rebuild /m:1 /p:Configuration=Release;Platform=Win32 bobura.sln
 '''
   }
-  stage('Build for x64 with MSBuild') {
+  stage('Build for x64') {
     bat '''chcp 65001
     "%MSBUILD_COMMAND%" /t:Rebuild /m:1 /p:Configuration=Release;Platform=x64 bobura.sln
 '''
