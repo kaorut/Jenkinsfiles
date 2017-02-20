@@ -46,4 +46,10 @@ node('slave-eclair') {
 '''
     archiveArtifacts '*.tar.gz, *.tar.bz2, *.zip, doc/**'
   }
+  stage('Stop Docker Container') {
+    bat '''chcp 65001
+    docker stop -t 0 jenkins_slave_bobura
+    docker rm -v jenkins_slave_bobura
+'''
+  }
 }
