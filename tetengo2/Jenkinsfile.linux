@@ -9,7 +9,7 @@ node('slave-eclair') {
     bat '''chcp 65001
     docker stop -t 0 jenkins_slave_tetengo2
     docker rm -v jenkins_slave_tetengo2
-    docker run --name jenkins_slave_tetengo2 -itd -u docker -w /home/docker -v "%WORKSPACE%":/mnt/jenkins tetengo/base:latest
+    docker run --name jenkins_slave_tetengo2 -itd -u docker -w /home/docker -v "%WORKSPACE%":/mnt/jenkins tetengo/gcc:latest
 '''
   }
   stage('Clone from GitHub') {
