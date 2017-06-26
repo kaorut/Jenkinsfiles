@@ -13,17 +13,17 @@
 #define BOBURACONFIG_H
 
 
-// Set to 1 when you are using Visual C++ Express Edition.
-#define USE_VISUAL_CPP_EXPRESS_EDITION 0
+// Set the Visual C++ Redistributable version.
+#define VC_REDIST_VERSION "140"
 
 // Set the Boost version.
-#define BOOST_VERSION "1_63"
+#define BOOST_VERSION "1_64"
 
 // Set the path where the 32-bit (Win32) version of Boost DLLs exist.
-#define BOOST_LIB_Win32 "C:\data\\boost\\boost_1_63_0\\stage\\Win32\\lib"
+#define BOOST_LIB_Win32 "C:\\data\\boost\\boost_1_64_0\\stage\\Win32\\lib"
 
 // Set the path where the 64-bit (x64) version of Boost DLLs exist.
-#define BOOST_LIB_x64 "C:\data\\boost\\boost_1_63_0\\stage\\x64\\lib"
+#define BOOST_LIB_x64 "C:\\data\\boost\\boost_1_64_0\\stage\\x64\\lib"
 
 // Set the EmbedTransform tool directory.
 #define EMBEDTRANSFORM_DIR "C:\\Program Files (x86)\\embedtransform"
