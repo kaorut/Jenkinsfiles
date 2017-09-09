@@ -17,13 +17,13 @@
 #define VC_REDIST_VERSION "140"
 
 // Set the Boost version.
-#define BOOST_VERSION "1_64"
+#define BOOST_VERSION "1_65_1"
 
 // Set the path where the 32-bit (Win32) version of Boost DLLs exist.
-#define BOOST_LIB_Win32 "C:\\data\\boost\\boost_1_64_0\\stage\\Win32\\lib"
+#define BOOST_LIB_Win32 "C:\\data\\boost\\boost_1_65_1\\stage\\Win32\\lib"
 
 // Set the path where the 64-bit (x64) version of Boost DLLs exist.
-#define BOOST_LIB_x64 "C:\\data\\boost\\boost_1_64_0\\stage\\x64\\lib"
+#define BOOST_LIB_x64 "C:\\data\\boost\\boost_1_65_1\\stage\\x64\\lib"
 
 // Set the EmbedTransform tool directory.
 #define EMBEDTRANSFORM_DIR "C:\\Program Files (x86)\\embedtransform"
