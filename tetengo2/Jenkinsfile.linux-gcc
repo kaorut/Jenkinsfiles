@@ -25,26 +25,10 @@ node('slave-eclair') {
     docker exec jenkins_slave_tetengo2 bash -c "cd tetengo2 && ./jenkins_tetengo2_configure.sh /home/docker/tetengo2"
 '''
   }
-  stage('Lint') {
-    bat '''chcp 65001
-    docker exec jenkins_slave_tetengo2 bash -c "cd tetengo2 && ./jenkins_tetengo2_lint.sh"
-'''
-  }
   stage('Build') {
     bat '''chcp 65001
     docker exec jenkins_slave_tetengo2 bash -c "cd tetengo2 && ./jenkins_tetengo2_distcheck.sh /home/docker/tetengo2"
 '''
-  }
-  stage('Make Documents') {
-    bat '''chcp 65001
-    docker exec jenkins_slave_tetengo2 bash -c "cd tetengo2 && ./jenkins_tetengo2_doc.sh"
-'''
-  }
-  stage('Save Artifacts') {
-    bat '''chcp 65001
-    docker exec jenkins_slave_tetengo2 bash -c "cd tetengo2/build && cp -r *.tar.bz2 *.tar.gz *.zip doc /mnt/jenkins"
-'''
-    archiveArtifacts '*.tar.gz, *.tar.bz2, *.zip, doc/**'
   }
   stage('Stop Docker Container') {
     bat '''chcp 65001

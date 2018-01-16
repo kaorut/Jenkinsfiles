@@ -1,5 +1,5 @@
 /*
-    Jenkinsfile for Bobura on Linux
+    Jenkinsfile for Bobura on Linux with GCC
     http://www.tetengo2.org/jenkins/
     Copyright (C) 2017 kaoru
 */
@@ -25,26 +25,10 @@ node('slave-eclair') {
     docker exec jenkins_slave_bobura bash -c "cd bobura && ./jenkins_bobura_configure.sh /home/docker/bobura"
 '''
   }
-  stage('Lint') {
-    bat '''chcp 65001
-    docker exec jenkins_slave_bobura bash -c "cd bobura && ./jenkins_bobura_lint.sh"
-'''
-  }
   stage('Build') {
     bat '''chcp 65001
     docker exec jenkins_slave_bobura bash -c "cd bobura && ./jenkins_bobura_distcheck.sh /home/docker/bobura"
 '''
-  }
-  stage('Make Documents') {
-    bat '''chcp 65001
-    docker exec jenkins_slave_bobura bash -c "cd bobura && ./jenkins_bobura_doc.sh"
-'''
-  }
-  stage('Save Artifacts') {
-    bat '''chcp 65001
-    docker exec jenkins_slave_bobura bash -c "cd bobura/build && cp -r *.tar.bz2 *.tar.gz *.zip doc /mnt/jenkins"
-'''
-    archiveArtifacts '*.tar.gz, *.tar.bz2, *.zip, doc/**'
   }
   stage('Stop Docker Container') {
     bat '''chcp 65001
