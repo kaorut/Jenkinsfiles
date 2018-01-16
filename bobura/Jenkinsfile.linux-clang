@@ -27,7 +27,7 @@ node('slave-eclair') {
   }
   stage('Lint') {
     bat '''chcp 65001
-    docker exec jenkins_slave_bobura bash -c "cd bobura && ./jenkins_bobura_lint.sh"
+    docker exec jenkins_slave_bobura_clang bash -c "cd bobura && ./jenkins_bobura_lint.sh"
 '''
   }
   stage('Build') {
@@ -37,12 +37,12 @@ node('slave-eclair') {
   }
   stage('Make Documents') {
     bat '''chcp 65001
-    docker exec jenkins_slave_bobura bash -c "cd bobura && ./jenkins_bobura_doc.sh"
+    docker exec jenkins_slave_bobura_clang bash -c "cd bobura && ./jenkins_bobura_doc.sh"
 '''
   }
   stage('Save Artifacts') {
     bat '''chcp 65001
-    docker exec jenkins_slave_bobura bash -c "cd bobura/build && cp -r *.tar.bz2 *.tar.gz *.zip doc /mnt/jenkins"
+    docker exec jenkins_slave_bobura_clang bash -c "cd bobura/build && cp -r *.tar.bz2 *.tar.gz *.zip doc /mnt/jenkins"
 '''
     archiveArtifacts '*.tar.gz, *.tar.bz2, *.zip, doc/**'
   }
