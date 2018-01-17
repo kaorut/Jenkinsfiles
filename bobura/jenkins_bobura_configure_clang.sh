@@ -3,7 +3,6 @@
 SOURCE_TOP=$1
 
 export DISTCHECK_CONFIGURE_FLAGS=" \
-  --enable-precompilation=pch \
   --with-tetengo2-includedir=$SOURCE_TOP/lib/tetengo2/tetengo2/include \
   --with-tetengo2-libdir=$SOURCE_TOP/lib/tetengo2/tetengo2/src \
   --with-tetengo2-detail-includedir=$SOURCE_TOP/lib/tetengo2/tetengo2_detail/include \
@@ -14,7 +13,7 @@ export DISTCHECK_CONFIGURE_FLAGS=" \
   CXX=clang++ \
 "
 
-./tools/checkout_and_build_tetengo2.sh "$SOURCE_TOP" '--enable-precompilation=pch CC=clang CXX=clang++' '-j8'
+./tools/checkout_and_build_tetengo2.sh "$SOURCE_TOP" 'CC=clang CXX=clang++' '-j8'
 
 ./bootstrap.sh
 mkdir build

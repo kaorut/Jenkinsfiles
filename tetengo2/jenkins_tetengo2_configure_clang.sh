@@ -3,7 +3,6 @@
 SOURCE_TOP=$1
 
 export DISTCHECK_CONFIGURE_FLAGS=" \
-  --enable-precompilation=pch \
   CC=clang \
   CXX=clang++ \
 "

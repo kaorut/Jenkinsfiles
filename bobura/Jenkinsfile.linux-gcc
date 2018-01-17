@@ -27,7 +27,7 @@ node('slave-eclair') {
   }
   stage('Build') {
     bat '''chcp 65001
-    docker exec jenkins_slave_bobura bash -c "cd bobura && ./jenkins_bobura_distcheck.sh /home/docker/bobura"
+    docker exec jenkins_slave_bobura bash -c "cd bobura && ./jenkins_bobura_check.sh /home/docker/bobura"
 '''
   }
   stage('Stop Docker Container') {
