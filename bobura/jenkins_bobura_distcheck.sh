@@ -9,6 +9,8 @@ export DISTCHECK_CONFIGURE_FLAGS=" \
   --with-tetengo2-detail-libdir=$SOURCE_TOP/lib/tetengo2/tetengo2_detail/src \
   --with-tetengo2-gui-includedir=$SOURCE_TOP/lib/tetengo2/tetengo2_gui/include \
   --with-tetengo2-gui-libdir=$SOURCE_TOP/lib/tetengo2/tetengo2_gui/src \
+  CC=clang \
+  CXX=clang++ \
 "
 export BOOST_TEST_LOG_LEVEL=warning
 
