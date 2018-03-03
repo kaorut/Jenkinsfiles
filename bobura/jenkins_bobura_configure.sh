@@ -12,7 +12,7 @@ export DISTCHECK_CONFIGURE_FLAGS=" \
   --with-tetengo2-gui-libdir=$SOURCE_TOP/lib/tetengo2/tetengo2_gui/src \
 "
 
-./tools/checkout_and_build_tetengo2.sh "$SOURCE_TOP" '' '-j8'
+./tools/checkout_and_build_tetengo2.sh "$SOURCE_TOP" '--with-clang-format=clang-format-5.0' '-j8'
 
 ./bootstrap.sh
 mkdir build
