@@ -10,6 +10,7 @@ export DISTCHECK_CONFIGURE_FLAGS=" \
   --with-tetengo2-detail-libdir=$SOURCE_TOP/lib/tetengo2/tetengo2_detail/src \
   --with-tetengo2-gui-includedir=$SOURCE_TOP/lib/tetengo2/tetengo2_gui/include \
   --with-tetengo2-gui-libdir=$SOURCE_TOP/lib/tetengo2/tetengo2_gui/src \
+  --with-tetengo2-tooldir=$SOURCE_TOP/lib/tetengo2/tools \
   CC=clang \
   CXX=clang++ \
 "
