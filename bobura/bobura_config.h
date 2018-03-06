@@ -23,7 +23,7 @@
 #define BOOST_LIB_x64 "C:\\data\\boost\\boost_1_66_0\\stage\\x64\\lib"
 
 // Set the path where Visual C++ Redistributable merge modules exist.
-#define VC_REDIST_PATH "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\VC\Redist\MSVC\14.12.25810\MergeModules"
+#define VC_REDIST_PATH "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\VC\Redist\MSVC\14.13.26020\MergeModules"
 
 // Set the EmbedTransform tool directory.
 #define EMBEDTRANSFORM_DIR "C:\\Program Files (x86)\\embedtransform"
