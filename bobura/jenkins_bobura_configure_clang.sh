@@ -15,7 +15,7 @@ export DISTCHECK_CONFIGURE_FLAGS=" \
   CXX=clang++-5.0 \
 "
 
-./tools/checkout_and_build_tetengo2.sh "$SOURCE_TOP" 'CC=clang CXX=clang++ --with-clang-format=clang-format-5.0' '-j8'
+./tools/checkout_and_build_tetengo2.sh "$SOURCE_TOP" 'CC=clang-5.0 CXX=clang++-5.0 --with-clang-format=clang-format-5.0' '-j8'
 
 ./bootstrap.sh
 mkdir build
