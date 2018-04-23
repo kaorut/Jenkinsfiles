@@ -14,13 +14,13 @@
 
 
 // Set the Boost version.
-#define BOOST_VERSION "1_66"
+#define BOOST_VERSION "1_67"
 
 // Set the path where the 32-bit (Win32) version of Boost DLLs exist.
-#define BOOST_LIB_Win32 "C:\\data\\boost\\boost_1_66_0\\stage\\Win32\\lib"
+#define BOOST_LIB_Win32 "C:\\data\\boost\\boost_1_67_0\\stage\\Win32\\lib"
 
 // Set the path where the 64-bit (x64) version of Boost DLLs exist.
-#define BOOST_LIB_x64 "C:\\data\\boost\\boost_1_66_0\\stage\\x64\\lib"
+#define BOOST_LIB_x64 "C:\\data\\boost\\boost_1_67_0\\stage\\x64\\lib"
 
 // Set the path where Visual C++ Redistributable merge modules exist.
 #define VC_REDIST_PATH "C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Community\\VC\Redist\MSVC\14.13.26020\MergeModules"
