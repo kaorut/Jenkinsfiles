@@ -1,4 +1,4 @@
 #!/bin/sh
 
 cd build
-make lint
+make -j8 lint
