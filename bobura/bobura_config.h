@@ -4,7 +4,7 @@
     Copy this file to the solution directory with the name "bobura_config.h"
     and edit it to build bobura.
 
-    Copyright (C) 2007-2017 kaoru
+    Copyright (C) 2007-2019 kaoru
 
     $Id: 4381d60dc6c8dcf823dbed8111212358ec0faa19 $
 */

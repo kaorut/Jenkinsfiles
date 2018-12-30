@@ -1,7 +1,7 @@
 /*
     Jenkinsfile for Tetengo2 on Windows
     http://www.tetengo2.org/jenkins/
-    Copyright (C) 2017 kaoru
+    Copyright (C) 2017-2019 kaoru
 */
 
 node('slave-eclair') {

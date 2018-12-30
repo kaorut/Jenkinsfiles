@@ -4,7 +4,7 @@
     Copy this file to the solution directory with the name "tetengo2_config.h"
     and edit it to build Tetengo2.
 
-    Copyright (C) 2007-2018 kaoru
+    Copyright (C) 2007-2019 kaoru
 
     $Id: c011c836bc72cf15cd2857a9eda0085570cd5453 $
 */
