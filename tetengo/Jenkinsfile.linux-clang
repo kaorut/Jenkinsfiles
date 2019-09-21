@@ -1,55 +1,55 @@
 /*
-    Jenkinsfile for Tetengo2 on Linux with Clang
-    http://www.tetengo2.org/jenkins/
-    Copyright (C) 2017-2019 kaoru
+    Jenkinsfile for tetengo on Linux with Clang
+    https://www.tetengo.org/jenkins/
+    Copyright (C) 2019 kaoru
 */
 
 node('slave-eclair') {
   stage('Start Docker Container') {
     bat '''chcp 65001
-    docker stop -t 0 jenkins_slave_tetengo2_clang
-    docker rm -v jenkins_slave_tetengo2_clang
-    docker run --name jenkins_slave_tetengo2_clang -itd -u docker -w /home/docker -v "%WORKSPACE%":/mnt/jenkins tetengo/clang:latest
+    docker stop -t 0 jenkins_slave_tetengo_clang
+    docker rm -v jenkins_slave_tetengo_clang
+    docker run --name jenkins_slave_tetengo_clang -itd -u docker -w /home/docker -v "%WORKSPACE%":/mnt/jenkins tetengo/clang:latest
 '''
   }
   stage('Clone from GitHub') {
     bat '''chcp 65001
-    docker exec jenkins_slave_tetengo2_clang bash -c "rm -rf /home/docker/tetengo2"
-    docker exec jenkins_slave_tetengo2_clang bash -c "git clone https://github.com/kaorut/tetengo2.git"
+    docker exec jenkins_slave_tetengo_clang bash -c "rm -rf /home/docker/tetengo"
+    docker exec jenkins_slave_tetengo_clang bash -c "git clone https://github.com/kaorut/tetengo.git"
 '''
   }
   stage('Configure') {
     bat '''chcp 65001
-    copy ..\\..\\jenkinsfiles\\tetengo2\\jenkins_tetengo2_*.sh .
-    docker exec jenkins_slave_tetengo2_clang bash -c "cp /mnt/jenkins/jenkins_tetengo2_*.sh /home/docker/tetengo2"
-    docker exec jenkins_slave_tetengo2_clang bash -c "cd tetengo2 && ./jenkins_tetengo2_configure_clang.sh /home/docker/tetengo2"
+    copy ..\\..\\jenkinsfiles\\tetengo\\jenkins_*.sh .
+    docker exec jenkins_slave_tetengo_clang bash -c "cp /mnt/jenkins/jenkins_*.sh /home/docker/tetengo"
+    docker exec jenkins_slave_tetengo_clang bash -c "cd tetengo && ./jenkins_configure_clang.sh /home/docker/tetengo"
 '''
   }
   stage('Lint') {
     bat '''chcp 65001
-    docker exec jenkins_slave_tetengo2_clang bash -c "cd tetengo2 && ./jenkins_tetengo2_lint.sh"
+    docker exec jenkins_slave_tetengo_clang bash -c "cd tetengo && ./jenkins_lint.sh"
 '''
   }
   stage('Build') {
     bat '''chcp 65001
-    docker exec jenkins_slave_tetengo2_clang bash -c "cd tetengo2 && ./jenkins_tetengo2_distcheck.sh /home/docker/tetengo2"
+    docker exec jenkins_slave_tetengo_clang bash -c "cd tetengo && ./jenkins_distcheck.sh /home/docker/tetengo"
 '''
   }
   stage('Make Documents') {
     bat '''chcp 65001
-    docker exec jenkins_slave_tetengo2_clang bash -c "cd tetengo2 && ./jenkins_tetengo2_doc.sh"
+    docker exec jenkins_slave_tetengo_clang bash -c "cd tetengo && ./jenkins_doc.sh"
 '''
   }
   stage('Save Artifacts') {
     bat '''chcp 65001
-    docker exec jenkins_slave_tetengo2_clang bash -c "cd tetengo2/build && cp -r *.tar.bz2 *.tar.gz *.zip doc /mnt/jenkins"
+    docker exec jenkins_slave_tetengo_clang bash -c "cd tetengo/build && cp -r *.tar.bz2 *.tar.gz *.zip doc /mnt/jenkins"
 '''
     archiveArtifacts '*.tar.gz, *.tar.bz2, *.zip, doc/**'
   }
   stage('Stop Docker Container') {
     bat '''chcp 65001
-    docker stop -t 0 jenkins_slave_tetengo2_clang
-    docker rm -v jenkins_slave_tetengo2_clang
+    docker stop -t 0 jenkins_slave_tetengo_clang
+    docker rm -v jenkins_slave_tetengo_clang
 '''
   }
 }
