@@ -20,14 +20,14 @@ node('slave-eclair') {
   }
   stage('Configure') {
     bat '''chcp 65001
-    copy ..\\..\\jenkinsfiles\\tetengo\\jenkins_tetengo_*.sh .
-    docker exec jenkins_slave_tetengo bash -c "cp /mnt/jenkins/jenkins_tetengo_*.sh /home/docker/tetengo"
-    docker exec jenkins_slave_tetengo bash -c "cd tetengo && ./jenkins_tetengo_configure.sh /home/docker/tetengo"
+    copy ..\\..\\jenkinsfiles\\tetengo\\jenkins_*.sh .
+    docker exec jenkins_slave_tetengo bash -c "cp /mnt/jenkins/jenkins_*.sh /home/docker/tetengo"
+    docker exec jenkins_slave_tetengo bash -c "cd tetengo && ./jenkins_configure.sh /home/docker/tetengo"
 '''
   }
   stage('Build') {
     bat '''chcp 65001
-    docker exec jenkins_slave_tetengo bash -c "cd tetengo && ./jenkins_tetengo_check.sh /home/docker/tetengo"
+    docker exec jenkins_slave_tetengo bash -c "cd tetengo && ./jenkins_check.sh /home/docker/tetengo"
 '''
   }
   stage('Stop Docker Container') {
