@@ -42,9 +42,9 @@ node('slave-eclair') {
   }
   stage('Save Artifacts') {
     bat '''chcp 65001
-    docker exec jenkins_slave_tetengo_clang bash -c "cd tetengo/build && cp -r *.tar.gz doc /mnt/jenkins"
+    docker exec jenkins_slave_tetengo_clang bash -c "cd tetengo/build && cp -r *.tar.gz *.tar.bz2 *.zip doc /mnt/jenkins"
 '''
-    archiveArtifacts '*.tar.gz, doc/**'
+    archiveArtifacts '*.tar.gz, *.tar.bz2, *.zip, doc/**'
   }
   stage('Stop Docker Container') {
     bat '''chcp 65001
